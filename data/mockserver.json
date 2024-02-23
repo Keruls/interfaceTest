@@ -1,0 +1,324 @@
+[
+  {
+    "description": "01_login_success",
+    "request": {
+      "uri": "/api/sys/login",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "mobile": "13800000001",
+        "password": "123456"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers":{
+        "Content-Type":"application/json"
+      },
+      "json": {
+        "success": true,
+        "code": 10000,
+        "message": "操作成功",
+        "data": "abc123"
+      }
+    }
+  },
+  {
+    "description": "02_login_failure_empty_mobile",
+    "request": {
+      "uri": "/api/sys/login",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "mobile": "",
+        "password": "123456"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers":{
+        "Content-Type":"application/json"
+      },
+      "json": {
+        "success": false,
+        "code": 20001,
+        "message": "用户名或密码错误"
+      }
+    }
+  },
+  {
+    "description": "03_login_failure_empty_password",
+    "request": {
+      "uri": "/api/sys/login",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "mobile": "13800000001",
+        "password": ""
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers":{
+        "Content-Type":"application/json"
+      },
+      "json": {
+        "success": false,
+        "code": 20001,
+        "message": "用户名或密码错误"
+      }
+    }
+  },
+  {
+    "description": "04_login_failure_mobile<11",
+    "request": {
+      "uri": "/api/sys/login",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "mobile": "1380000000",
+        "password": "123456"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers":{
+        "Content-Type":"application/json"
+      },
+      "json": {
+        "success": false,
+        "code": 20001,
+        "message": "用户名或密码错误"
+      }
+    }
+  },
+  {
+    "description": "05_login_failure_mobile>11",
+    "request": {
+      "uri": "/api/sys/login",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "mobile": "138000000012",
+        "password": "123456"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers":{
+        "Content-Type":"application/json"
+      },
+      "json": {
+        "success": false,
+        "code": 20001,
+        "message": "用户名或密码错误"
+      }
+    }
+  },
+  {
+    "description": "06_login_failure_mobile_not_num",
+    "request": {
+      "uri": "/api/sys/login",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "mobile": "abc",
+        "password": "123456"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers":{
+        "Content-Type":"application/json"
+      },
+      "json": {
+        "success": false,
+        "code": 20001,
+        "message": "用户名或密码错误"
+      }
+    }
+  },
+  {
+    "description": "07_login_failure_unregistered",
+    "request": {
+      "uri": "/api/sys/login",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "mobile": "13800000002",
+        "password": "123456"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers":{
+        "Content-Type":"application/json"
+      },
+      "json": {
+        "success": false,
+        "code": 20001,
+        "message": "用户名或密码错误"
+      }
+    }
+  },
+  {
+    "description": "08_login_failure_mobile_unexpected_params",
+    "request": {
+      "uri": "/api/sys/login",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "mobile": "13800000001",
+        "password": "123456",
+        "unexpected": "hello"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers":{
+        "Content-Type":"application/json"
+      },
+      "json": {
+        "success": true,
+        "code": 10000,
+        "message": "操作成功"
+      }
+    }
+  },
+  {
+    "description": "09_login_failure_mobile_missed_mobile",
+    "request": {
+      "uri": "/api/sys/login",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "password": "123456"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers":{
+        "Content-Type":"application/json"
+      },
+      "json": {
+        "success": false,
+        "code": 20001,
+        "message": "用户名或密码错误"
+      }
+    }
+  },
+  {
+    "description": "10_login_failure_mobile_missed_password",
+    "request": {
+      "uri": "/api/sys/login",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "mobile": "13800000001"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers":{
+        "Content-Type":"application/json"
+      },
+      "json": {
+        "success": false,
+        "code": 20001,
+        "message": "用户名或密码错误"
+      }
+    }
+  },
+  {
+    "description": "11_login_failure_mobile_missed_params",
+    "request": {
+      "uri": "/api/sys/login",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "json": {}
+    },
+    "response": {
+      "status": 200,
+      "headers":{
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "success": false,
+        "code": 99999,
+        "message": "sorry,system is busy"
+      }
+    }
+  },
+  {
+    "description": "12_login_failure_error_mobile",
+    "request": {
+      "uri": "/api/sys/login",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "mobile": "13800000003",
+        "password": "123456"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers":{
+        "Content-Type":"application/json"
+      },
+      "json": {
+        "success": false,
+        "code": 20001,
+        "message": "用户名或密码错误"
+      }
+    }
+  },
+  {
+    "description": "13_login_failure_error_password",
+    "request": {
+      "uri": "/api/sys/login",
+      "method": "post",
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "json": {
+        "mobile": "13800000001",
+        "password": "111111"
+      }
+    },
+    "response": {
+      "status": 200,
+      "headers":{
+        "Content-Type":"application/json"
+      },
+      "json": {
+        "success": false,
+        "code": 20001,
+        "message": "用户名或密码错误"
+      }
+    }
+  }
+]
